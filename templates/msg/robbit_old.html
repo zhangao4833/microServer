@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>客服在线</title>
+</head>
+<body>
+<h1>脸盆网</h1>
+
+<div id="msg_box">
+
+</div>
+<div id="box">
+
+</div>
+<script type="text/javascript">
+    function $(id) {
+        return document.getElementById(id)
+    }
+    window.onload = function (ev) {
+        var socket = new WebSocket('ws://10.36.174.18:9000/msg');
+        var num = false;
+        // 打开socket链接的回调函数
+        socket.onopen = function (ev2) {
+            console.log('--onopen--');
+            console.log(ev4)
+        };
+        // 接受服务端发送的消息时的回调函数
+        socket.onmessage = function (ev3) {
+            data = ev3.data;
+            if (data === 'end'){
+                num =false
+            }
+            if (num === true){
+                $('box').innerHTML = data+'<br>';
+            }else{
+                {#$('msg_box').innerHTML += data+'<br>';#}
+            }
+            if (data === 'starting'){
+                num = true;
+            }
+
+        };
+        // 接受到错误信息的回调函数
+        socket.onerror = function (ev4) {
+            console.log('--onerror--');
+            console.log(ev4)
+        }
+    }
+
+</script>
+</body>
+</html>
