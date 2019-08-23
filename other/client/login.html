@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Referrer" content="no-referrer">
+    <title>Title</title>
+</head>
+<body>
+<button onclick="login()">登陆</button>
+<script type="text/javascript">
+    function $(id) {
+        return document.getElementById(id)
+    }
+
+    function login() {
+        let myHeaders = new Headers();
+        myHeaders.append('Content-Type', 'application/json');
+        fetch('http://10.36.174.18:9000/user', {
+            method: 'POST',
+            mode: 'cors',
+            headers: myHeaders,
+            body: JSON.stringify({
+                "name": "jack",
+                "pwd": "123"
+            }),
+        }).then(response => response.json()).then(json=>console.log(json))
+    }
+</script>
+</body>
+</html>
