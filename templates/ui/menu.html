@@ -1,10 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{#<ul>#}
+{#    {% for m in menu %}#}
+{#        <li><a href="#" target="content">{{ m.title }}</a><ul>{% for n in menu[m] %}#}
+{#            <li><a href="#">{{ n.title }}</a></li>#}
+{#            {% end %}</ul></li>#}
+{#    {% end %}#}
+{#</ul>#}
+<dl class="list_dl">
+        {% for m in menu %}
+
+        <dt class="list_dt">
+            <span class="_after"></span>
+            <p>{{ m.title }}</p>
+            <i class="list_dt_icon"></i>
+        </dt>
+        <dd class="list_dd">
+            <ul>
+                {% for n in menu[m] %}
+                                <li class="list_li">{{ n.title }}</li>
+
+                {% end %}
+            </ul>
+        </dd>
+        {% end %}
+
+</dl>
